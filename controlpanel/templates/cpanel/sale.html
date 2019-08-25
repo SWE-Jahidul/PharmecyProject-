@@ -1,0 +1,121 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href='{%static "/assets/css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.brands.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.solid.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/style.css" %}'>
+    <title>Sale Medicine</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <section>
+            <nav class="navbar navbar-light bg-light justify-content-between">
+
+                <a class="navbar-brand" href="{% url 'manage' %}"><i class="fas fa-notes-medical mr-2"></i>PureLife Pharmacy</a>
+                <form class="form-inline">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            </nav>
+        </section>
+        <br>
+        {% if success %}
+            <div class="alert alert-success" role="alert">
+                {{ success }}
+            </div>
+        {% endif %}
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+                {{ error }}
+          </div>
+        {% endif %}
+        <!-- All category already available -->
+        
+        <!-- Navbar Ends -->
+        <!-- Body part -->
+        <div class="container mt-5">
+            <div class="form-group">
+                <label for="medicine">Select Medicine</label>
+                <select class="form-control" id="medicine" name="medicine">
+                    {% for med in medicine %}
+                      <option value="{{ med.id }}">{{ med.name }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                {% csrf_token %}
+                <input type="button" class="btn btn-sm btn-success" id="addtolist" value="Add To List">
+              </div>
+    </div>
+    <br>
+    
+    <br>
+    <div class="row">
+            <div class="col-md-4" style="background-color: whitesmoke;padding:10px; border-radius:10px;">
+                <table class="table">
+                    <thead>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </thead>
+                    <tbody>
+                       <tr>
+                           <td>Napa</td>
+                           <td>2.5</td>
+                       </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4" style="background-color: darkgrey;padding:10px; border-radius:10px;">
+                <label class="label">Buyer Name</label>
+                <input class="form-control" type="text">
+                <label>Buyer Address</label>
+                <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea>
+                <label>Phone</label>
+                <input class="form-control" type="text" name="" id="">
+            </div>
+            <div class="col-md-4" style="padding: 60px;">
+                <label><b>Total Cost:</b></label>
+                <h4>570 TK</h4>
+                <hr>
+                <input type="button" class="btn btn-block btn-sm btn-success" value="Sale">
+            </div>
+
+        </div>
+    <!-- End body -->
+    <!-- Footer -->
+    <section class=" text-center">
+                    <footer class="footer">
+                        <div class="container">
+                            <span class="text-muted">© PureLife Pharmacy <span id="nowtime"
+                                    style="font-weight: bold;"></span></span>
+                        </div>
+                    </footer>
+                    </section>
+
+                </div>
+
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src='{%static "/assets/js/jquery-3.2.1.slim.min.js" %}'></script>
+                <script src='{%static "/assets/js/popper.min.js" %}'></script>
+                <script src='{%static "/assets/js/bootstrap.min.js" %}'></script>
+                <script src='{%static "/assets/js/sale.js" %}'></script>
+
+                <script>
+                    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    var dt = new Date();
+                    var time = "Now : " + dt.getDay() + "-" + dt.getMonth() + "-" + dt.getFullYear() + " at " + dt.getHours() + ":" + dt.getMinutes();
+                    $("#nowtime").text(time)
+                </script>
+</body>
+
+</html>

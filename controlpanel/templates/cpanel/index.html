@@ -1,0 +1,69 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href='{%static "assets/css/bootstrap.min.css" %}'>
+    <title>Please Login!</title>
+</head>
+<style>
+    body {
+        background-image: url('1450186023-g-different-medicines-171626219.jpg');
+    }
+
+    span
+    {
+        font-size: 30px;
+        text-align: center;
+        font-weight: 100;
+        font-family: 'Jacques Francois Shadow';
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3"> </div>
+            <div class="col-md-5">
+                <div style="margin-top:15%;">
+                    <center>
+                        <span> Pharmacy management System</span>
+                        <br>
+                        {% if error %}
+                            <span style="color: red; font-size: 15px;"><i>{{ error }}</i></span>
+                        {% endif %}
+                    </center>
+                    <!-- Extra styling for login box -->
+                    <form style="margin-top:20%;" method="POST" action="{% url 'loginpage' %}">
+                    {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="username" class="form-control" id="username" aria-describedby="emailHelp"
+                                placeholder="Username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary float-right">Login</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src='{%static "/assets/js/jquery-3.2.1.slim.min.js" %}'></script>
+    <script src='{%static "/assets/js/popper.min.js" %}'></script>
+    <script src='{%static "/assets/js/bootstrap.min.js" %}'></script>
+</body>
+
+</html>

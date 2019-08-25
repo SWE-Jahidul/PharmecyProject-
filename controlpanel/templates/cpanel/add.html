@@ -1,0 +1,137 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href='{%static "/assets/css/bootstrap.min.css" %}'>
+  <link rel="stylesheet" href='{%static "/assets/css/fontawesome.min.css" %}'>
+  <link rel="stylesheet" href='{%static "/assets/css/fontawesome.brands.min.css" %}'>
+  <link rel="stylesheet" href='{%static "/assets/css/fontawesome.solid.min.css" %}'>
+  <link rel="stylesheet" href='{%static "/assets/css/style.css" %}'>
+  <title>addmedicine</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- Navbar -->
+    <section>
+      <nav class="navbar navbar-light bg-light justify-content-between">
+
+        <a class="navbar-brand" href="{% url 'manage' %}"><i class="fas fa-notes-medical mr-2"></i>PureLife Pharmacy</a>
+        <form class="form-inline">
+          <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+      </nav>
+    </section>
+
+    <!-- Navbar Ends -->
+    <br>
+    {% if success %}
+            <div class="alert alert-success" role="alert">
+                {{ success }}
+            </div>
+        {% endif %}
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+                {{ error }}
+          </div>
+        {% endif %}
+    <!-- Body Cards -->
+    <form class="pt-5" method="POST" action="{% url 'add' %}">
+      {% csrf_token %}
+        <div class="form-group">
+            <label for="m_name"> Name </label>
+            <input type="text" class="form-control" id="m_name" name="m_name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="medicine_catagory">Select Catagory</label>
+            <select class="form-control" id="medicine_catagory" name="medicine_catagory">
+                {% for cat in categories %}
+                  <option value="{{ cat.name }}">{{ cat.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="brand_name"> Brand Name </label>
+            <input type="text" class="form-control" id="brand_name" name="brand_name" placeholder="Brand Name">
+        </div>
+
+
+        <div class="form-group">
+          <label for="medicine_catagory">Select Generic</label>
+          <select class="form-control" id="medicine_catagory" name="generic">
+              {% for gen in generics %}
+                <option value="{{ gen.name }}">{{ gen.name }}</option>
+              {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+            <label for="medicine_catagory">Select Type</label>
+            <select class="form-control" id="medicine_catagory" name="mtype">
+                {% for t in mtypes %}
+                  <option value="{{ t.name }}">{{ t.name }}</option>
+                {% endfor %}
+            </select>
+          </div>
+
+        <div class="form-group">
+            <label for="price"> Price Per Tablet </label>
+            <input type="number" class="form-control" id="price" name="price" onchange="calc()" step="0.01" placeholder="2.5">
+        </div>
+
+        <label id="res"> </label>
+
+        <script>
+        
+          function calc()
+{
+          q = document.getElementById("quantity").value;
+          p = document.getElementById("price").value;
+
+          document.getElementById("res").innerText=""+(p*q);
+          
+
+}
+        </script>
+
+        <div class="form-group">
+            <label for="expired_date"> Expired Date </label>
+            <input type="text" class="form-control" id="expired_date" name="expired_date" placeholder="2019-07-22">
+        </div>
+
+        <button type="submit" class="btn btn-primary float-right">Save</button>
+
+    </form>
+    <!-- End body -->
+    <!-- Footer -->
+    <section class="text-center">
+      <footer class="footer">
+             <div class="container">
+          <span class="text-muted">© PureLife Pharmacy <span id="nowtime" style="font-weight: bold;"></span></span>
+        </div>
+      </footer>
+    </section>
+
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src='{%static "/assets/js/jquery-3.2.1.slim.min.js" %}'></script>
+  <script src='{%static "/assets/js/popper.min.js" %}'></script>
+  <script src='{%static "/assets/js/bootstrap.min.js" %}'></script>
+
+  <script>
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    var dt = new Date();
+    var time = "Now : " + dt.getDay() + "-" + dt.getMonth() + "-" + dt.getFullYear() + " at " + dt.getHours() + ":" + dt.getMinutes();
+    $("#nowtime").text(time)
+  </script>
+</body>
+
+</html>

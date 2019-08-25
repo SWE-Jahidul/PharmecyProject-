@@ -1,0 +1,106 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href='{%static "/assets/css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.brands.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.solid.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/style.css" %}'>
+    <title>All Medicine</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <section>
+            <nav class="navbar navbar-light bg-light justify-content-between">
+
+                <a class="navbar-brand" href="{% url 'manage' %}"><i class="fas fa-notes-medical mr-2"></i>PureLife Pharmacy</a>
+                <form class="form-inline">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            </nav>
+        </section>
+        <br>
+        {% if success %}
+            <div class="alert alert-success" role="alert">
+                {{ success }}
+            </div>
+        {% endif %}
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+                {{ error }}
+          </div>
+        {% endif %}
+        <!-- All category already available -->
+        
+        <!-- Navbar Ends -->
+        <!-- Body part -->
+       
+    <br>
+    <h3>All Medicine</h3>
+    <br>
+    <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    <thead>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Brand Name</th>
+                        <th>Generic</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Expire Date</th>
+                    </thead>
+                    <tbody>
+                        {% for med in available %}
+                            <tr>
+                                <td>{{ med.name }}</td>
+                                <td>{{ med.category }}</td>
+                                <td>{{ med.brandName }}</td>
+                                <td>{{ med.generic }}</td>
+                                <td>{{ med.mtype }}</td>
+                                <td>{{ med.pricePerTablet }}</td>
+                                <td>{{ med.expireDate }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    <!-- End body -->
+    <!-- Footer -->
+    <section class=" text-center">
+                    <footer class="footer">
+                        <div class="container">
+                            <span class="text-muted">© PureLife Pharmacy <span id="nowtime"
+                                    style="font-weight: bold;"></span></span>
+                        </div>
+                    </footer>
+                    </section>
+
+                </div>
+
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src='{%static "/assets/js/jquery-3.2.1.slim.min.js" %}'></script>
+                <script src='{%static "/assets/js/popper.min.js" %}'></script>
+                <script src='{%static "/assets/js/bootstrap.min.js" %}'></script>
+
+                <script>
+                    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    var dt = new Date();
+                    var time = "Now : " + dt.getDay() + "-" + dt.getMonth() + "-" + dt.getFullYear() + " at " + dt.getHours() + ":" + dt.getMinutes();
+                    $("#nowtime").text(time)
+                </script>
+</body>
+
+</html>

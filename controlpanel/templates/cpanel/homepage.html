@@ -1,0 +1,137 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href='{%static "/assets/css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.brands.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.solid.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/style.css" %}'>
+    <title>adminhomepage</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <section>
+            <nav class="navbar navbar-light bg-light justify-content-between">
+
+                <a class="navbar-brand" href="{% url 'manage' %}"><i class="fas fa-notes-medical mr-2"></i>PureLife Pharmacy</a>
+                <form class="form-inline">
+                    <a href="{% url 'logoutpage' %}" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</a>
+                </form>
+            </nav>
+        </section>
+        <!-- Navbar Ends -->
+        <!-- Body Cards -->
+        <section>
+            <div>
+                <div class="row mt-5">
+                    <!-- First column -->
+                    <div class="col-md-4 text-center mb-5">
+                        <div style="padding-left:20%;padding-right: 20%;">
+                            <div style="border:5px solid #F9F9F9; border-radius: 10%;">
+                                <a href="{% url 'add' %}" style="text-decoration:none;">
+                                    <i class="fas fa-plus-square" style="font-size:200px;"></i>
+                                    <span class="d-block">Add Medicine</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second Column -->
+                    <div class="col-md-4 text-center mb-5">
+                        <div style="padding-left:20%;padding-right: 20%;">
+                            <div style="border:5px solid #F9F9F9; border-radius: 10%;">
+                                <a href="{% url 'sale' %}" style="text-decoration:none;">
+                                    <i class="fas fa-handshake"
+                                        style="font-size:150px;padding-top: 12%; padding-bottom: 12%;"></i>
+                                    <span class="d-block">Sale Medicine</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Third Column -->
+                    <div class="col-md-4 text-center mb-5">
+                        <div style="padding-left:20%;padding-right: 20%;">
+                            <div style="border:5px solid #F9F9F9; border-radius: 10%;">
+                                <a href="{% url 'generic' %}" style="text-decoration:none;">
+                                    <i class="fas fa-capsules"
+                                        style="font-size:150px; padding-top: 10%; padding-bottom: 12%;"></i>
+                                    <span class="d-block" style="padding-bottom:1%;">Generic</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fourth Column -->
+                    <div class="col-md-4 text-center mb-5">
+                        <div style="padding-left:20%;padding-right: 20%;">
+                            <div style="border:5px solid #F9F9F9; border-radius: 10%;">
+                                <a href="{% url 'category' %}" style="text-decoration:none;">
+                                    <i class="fas fa-cog"
+                                        style="font-size:150px; padding-top: 10%; padding-bottom: 12%;"></i>
+                                    <span class="d-block" style="padding-bottom:1%;">Medicine Categories</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Fifth Column -->
+                    <div class="col-md-4 text-center mb-5">
+                        <div style="padding-left:20%;padding-right: 20%;">
+                            <div style="border:5px solid #F9F9F9; border-radius: 10%;">
+                                <a href="" style="text-decoration:none;">
+                                    <i class="fas fa-file-medical-alt"
+                                        style="font-size:150px; padding-top: 10%; padding-bottom: 12%;"></i>
+                                    <span class="d-block" style="padding-bottom:1%;">Sales Record</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sixth Column -->
+                    <div class="col-md-4 text-center mb-5">
+                        <div style="padding-left:20%;padding-right: 20%;">
+                            <div style="border:5px solid #F9F9F9; border-radius: 10%;">
+                                <a href="{% url 'medicine' %}" style="text-decoration:none;">
+                                    <i class="fas fa-info-circle"
+                                        style="font-size:150px; padding-top: 10%; padding-bottom: 12%;"></i>
+                                    <span class="d-block" style="padding-bottom:1%;">All Medicine Details</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Ends of cards -->
+        <!-- Footer -->
+        <section class="text-center">
+                <footer class="footer">
+                        <div class="container">
+                          <span class="text-muted">© PureLife Pharmacy <span id="nowtime" style="font-weight: bold;"></span></span>
+                        </div>
+                      </footer>
+        </section>|
+
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src='{%static "/assets/js/jquery-3.2.1.slim.min.js" %}'></script>
+    <script src='{%static "/assets/js/popper.min.js" %}'></script>
+    <script src='{%static "/assets/js/bootstrap.min.js" %}'></script>
+
+    <script>
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var dt = new Date();
+        var time = "Now : "+ dt.getDay()+"-"+ dt.getMonth() +"-"+ dt.getFullYear() +" at "+ dt.getHours() + ":" + dt.getMinutes();
+        $("#nowtime").text(time)
+    </script>
+</body>
+
+</html>

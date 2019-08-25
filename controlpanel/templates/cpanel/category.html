@@ -1,0 +1,104 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href='{%static "/assets/css/bootstrap.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.brands.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/fontawesome.solid.min.css" %}'>
+    <link rel="stylesheet" href='{%static "/assets/css/style.css" %}'>
+    <title>add catagory</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <section>
+            <nav class="navbar navbar-light bg-light justify-content-between">
+
+                <a class="navbar-brand" href="{% url 'manage' %}"><i class="fas fa-notes-medical mr-2"></i>PureLife Pharmacy</a>
+                <form class="form-inline">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+                </form>
+            </nav>
+        </section>
+        <br>
+        {% if success %}
+            <div class="alert alert-success" role="alert">
+                {{ success }}
+            </div>
+        {% endif %}
+        {% if error %}
+          <div class="alert alert-danger" role="alert">
+                {{ error }}
+          </div>
+        {% endif %}
+        <!-- All category already available -->
+        
+        <!-- Navbar Ends -->
+        <!-- Body part -->
+        <div class="container mt-5">
+            <form method="POST" action="{% url 'category' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="catagory_name">Catagry Name </label>
+                    <input type="text" name="cname" class="form-control" id="catagory_name" " placeholder=" Enter Catagory Name ">
+            </div>
+            <button type="submit" class="btn btn-primary float-right">Add Catagory</button>
+
+            </form>
+    </div>
+    <br>
+    
+    <br>
+    <div class="row">
+            <div class="col-md-4">
+                <table class="table">
+                    <thead>
+                        <th>Available Categories</th>
+                    </thead>
+                    <tbody>
+                        {% for cat in available %}
+                            <tr>
+                                <td>{{ cat.name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    <!-- End body -->
+    <!-- Footer -->
+    <section class=" text-center">
+                    <footer class="footer">
+                        <div class="container">
+                            <span class="text-muted">© PureLife Pharmacy <span id="nowtime"
+                                    style="font-weight: bold;"></span></span>
+                        </div>
+                    </footer>
+                    </section>
+
+                </div>
+
+                <!-- Optional JavaScript -->
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src='{%static "/assets/js/jquery-3.2.1.slim.min.js" %}'></script>
+                <script src='{%static "/assets/js/popper.min.js" %}'></script>
+                <script src='{%static "/assets/js/bootstrap.min.js" %}'></script>
+
+                <script>
+                    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    var dt = new Date();
+                    var time = "Now : " + dt.getDay() + "-" + dt.getMonth() + "-" + dt.getFullYear() + " at " + dt.getHours() + ":" + dt.getMinutes();
+                    $("#nowtime").text(time)
+                </script>
+</body>
+
+</html>
